@@ -16,7 +16,6 @@
         android:padding="8dp">
 
 
-        <!-- Botón para escanear código de barras -->
         <Button
             android:id="@+id/btnEscanearCodigo"
             android:layout_width="wrap_content"

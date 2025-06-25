@@ -13,6 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PuntoDeVentaUpt">
 
+        <activity android:name=".AgregarProductoActivity" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -25,3 +27,4 @@
     </application>
 
 </manifest>
+

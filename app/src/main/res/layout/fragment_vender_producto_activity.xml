@@ -1,51 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fullscreenContentControls"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/fullscreenBackgroundColor"
-    android:theme="@style/ThemeOverlay.PuntoDeVentaUpt.FullscreenContainer"
-    tools:context=".VenderProductoActivity">
+    android:orientation="vertical"
+    android:background="@drawable/fondo1"
+    android:padding="24dp"
+    android:layout_marginTop="15dp"
+    android:gravity="center_horizontal">
 
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
+
+    <Button
+        android:id="@+id/btnEscanearCodigo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="Escanear Código de Barras" />
+
+
     <TextView
-        android:id="@+id/fullscreen_content"
+        android:id="@+id/textViewFolio"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Folio:"
+        android:padding="12dp"
+        android:textColor="@android:color/white"
+        android:background="@color/light_blue_A400"
+        android:layout_marginTop="16dp" />
+
+
+    <TextView
+        android:id="@+id/textViewNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre:"
+        android:padding="12dp"
+        android:textColor="@android:color/white"
+        android:background="@color/light_blue_A400"
+        android:layout_marginTop="8dp" />
+
+
+    <EditText
+        android:id="@+id/editTextCantidad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Cantidad"
+        android:inputType="number"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/white"
+        android:textColorHint="@color/black"
+        android:background="@color/light_blue_A400"
+        android:minHeight="48dp"
+        android:paddingVertical="12dp" />
+
+
+    <TextView
+        android:id="@+id/textViewPrecioVenta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Precio: $0.00"
+        android:padding="12dp"
+        android:textColor="@android:color/white"
+        android:background="@color/light_blue_A400"
+        android:layout_marginTop="8dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="@string/dummy_content"
-        android:textColor="?attr/fullscreenTextColor"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="24dp">
 
-    <!-- This FrameLayout insets its children based on system windows using
-         android:fitsSystemWindows. -->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
-
-        <LinearLayout
-            android:id="@+id/fullscreen_content_controls"
-            style="@style/Widget.Theme.PuntoDeVentaUpt.ButtonBar.Fullscreen"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnAgregar"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:orientation="horizontal"
-            tools:ignore="UselessParent">
+            android:text="Agregar" />
 
-            <Button
-                android:id="@+id/dummy_button"
-                style="?android:attr/buttonBarButtonStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/dummy_button" />
+        <Button
+            android:id="@+id/btnCobrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cobrar"
+            android:layout_marginStart="16dp" />
+    </LinearLayout>
 
-        </LinearLayout>
-    </FrameLayout>
+</LinearLayout>
 
-</FrameLayout>

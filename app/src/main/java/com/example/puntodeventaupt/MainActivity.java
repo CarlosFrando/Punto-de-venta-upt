@@ -1,6 +1,7 @@
 package com.example.puntodeventaupt;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -67,9 +68,14 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "Inicio de sesión guardado correctamente", Toast.LENGTH_SHORT).show();
                     etUsuario.setText("");
                     etContrasena.setText("");
+                    Intent intent = new Intent(MainActivity.this, MainMenu.class);
+                    startActivity(intent);
+                    finish();
                 } else {
                     Toast.makeText(MainActivity.this, "Error al guardar en SQLite", Toast.LENGTH_SHORT).show();
                 }
+
+
             }
         });
     }

@@ -1,120 +1,86 @@
 package com.example.puntodeventaupt;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.puntodeventaupt.databinding.FragmentAgregarProductoActivityBinding;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
+public class AgregarProductoActivity extends AppCompatActivity {
 
-public class AgregarProductoActivity extends Fragment {
+    EditText editTextFolio, editTextNombre, editTextCantidad, editTextPrecioCompra, editTextPrecioVenta;
+    Button btnGuardar, btnCancelar;
 
-    private FragmentAgregarProductoActivityBinding binding;
-    private ActivityResultLauncher<Intent> scanLauncher;
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        binding = FragmentAgregarProductoActivityBinding.inflate(inflater, container, false);
-        return binding.getRoot();
-    }
+    DBHelper dbHelper;
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_agregar_producto_activity);
 
-        // Lanzador del escáner de código de barras
-        scanLauncher = registerForActivityResult(
-                new ActivityResultContracts.StartActivityForResult(),
-                result -> {
-                    IntentResult intentResult = IntentIntegrator.parseActivityResult(
-                            result.getResultCode(), result.getData()
-                    );
-                    if (intentResult != null && intentResult.getContents() != null) {
-                        binding.editTextFolio.setText(intentResult.getContents());
-                    } else {
-                        Toast.makeText(getContext(), "Escaneo cancelado", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        editTextFolio = findViewById(R.id.editTextFolio);
+        editTextNombre = findViewById(R.id.editTextNombre);
+        editTextCantidad = findViewById(R.id.editTextCantidad);
+        editTextPrecioCompra = findViewById(R.id.editTextPrecioCompra);
+        editTextPrecioVenta = findViewById(R.id.editTextPrecioVenta);
+        btnGuardar = findViewById(R.id.btnGuardar);
+        btnCancelar = findViewById(R.id.btnCancelar);
 
-        // Botón para iniciar escaneo
-        binding.btnEscanearCodigo.setOnClickListener(v -> {
-            IntentIntegrator integrator = IntentIntegrator.forSupportFragment(this);
-            integrator.setPrompt("Escanea el código de barras");
-            integrator.setBeepEnabled(true);
-            integrator.setOrientationLocked(true);
-            scanLauncher.launch(integrator.createScanIntent());
-        });
+        dbHelper = new DBHelper(this);
 
-        // Botón para guardar el producto
-        binding.btnGuardar.setOnClickListener(v -> {
-            String folio = binding.editTextFolio.getText().toString().trim();
-            String nombre = binding.editTextNombre.getText().toString().trim();
-            String cantidadStr = binding.editTextCantidad.getText().toString().trim();
-            String precioCompraStr = binding.editTextPrecioCompra.getText().toString().trim();
-            String precioVentaStr = binding.editTextPrecioVenta.getText().toString().trim();
 
-            // Validación de campos vacíos
-            if (folio.isEmpty() || nombre.isEmpty() || cantidadStr.isEmpty()
-                    || precioCompraStr.isEmpty() || precioVentaStr.isEmpty()) {
-                Toast.makeText(getContext(), "Completa todos los campos", Toast.LENGTH_SHORT).show();
-                return;
-            }
 
-            try {
-                int cantidad = Integer.parseInt(cantidadStr);
-                double precioCompra = Double.parseDouble(precioCompraStr);
-                double precioVenta = Double.parseDouble(precioVentaStr);
+        btnGuardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String folio = editTextFolio.getText().toString().trim();
+                String nombre = editTextNombre.getText().toString().trim();
+                String cantidadStr = editTextCantidad.getText().toString().trim();
+                String precioCompraStr = editTextPrecioCompra.getText().toString().trim();
+                String precioVentaStr = editTextPrecioVenta.getText().toString().trim();
 
-                if (cantidad <= 0 || precioCompra < 0 || precioVenta < 0) {
-                    Toast.makeText(getContext(), "Valores inválidos: asegúrate de ingresar números positivos", Toast.LENGTH_SHORT).show();
+                if (nombre.isEmpty() || cantidadStr.isEmpty() || precioCompraStr.isEmpty() || precioVentaStr.isEmpty()) {
+                    Toast.makeText(AgregarProductoActivity.this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                Producto producto = new Producto(folio, nombre, cantidad, precioCompra, precioVenta);
-                DBHelper dbHelper = new DBHelper(getContext());
+                try {
+                    int cantidad = Integer.parseInt(cantidadStr);
+                    double precioCompra = Double.parseDouble(precioCompraStr);
+                    double precioVenta = Double.parseDouble(precioVentaStr);
 
-                boolean insertado = dbHelper.insertarProducto(producto);
-                if (insertado) {
-                    Toast.makeText(getContext(), "Producto guardado exitosamente", Toast.LENGTH_SHORT).show();
-                    limpiarCampos();
-                } else {
-                    Toast.makeText(getContext(), "Error al guardar el producto", Toast.LENGTH_SHORT).show();
+                    Producto producto = new Producto(folio, nombre, cantidad, precioCompra, precioVenta);
+
+                    boolean exito = dbHelper.insertarProducto(producto);
+
+                    if (exito) {
+                        Toast.makeText(AgregarProductoActivity.this, "Producto guardado", Toast.LENGTH_SHORT).show();
+                        limpiarCampos();
+                    } else {
+                        Toast.makeText(AgregarProductoActivity.this, "Error al guardar", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (NumberFormatException e) {
+                    Toast.makeText(AgregarProductoActivity.this, "Datos numéricos inválidos", Toast.LENGTH_SHORT).show();
                 }
-
-            } catch (NumberFormatException e) {
-                Toast.makeText(getContext(), "Error: asegúrate de ingresar números válidos", Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Botón para cancelar
-        binding.btnCancelar.setOnClickListener(v -> requireActivity().onBackPressed());
+        btnCancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // Cierra esta pantalla
+            }
+        });
     }
 
-    // Limpia todos los campos después de guardar
     private void limpiarCampos() {
-        binding.editTextFolio.setText("");
-        binding.editTextNombre.setText("");
-        binding.editTextCantidad.setText("");
-        binding.editTextPrecioCompra.setText("");
-        binding.editTextPrecioVenta.setText("");
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+        editTextFolio.setText("");
+        editTextNombre.setText("");
+        editTextCantidad.setText("");
+        editTextPrecioCompra.setText("");
+        editTextPrecioVenta.setText("");
     }
 }
