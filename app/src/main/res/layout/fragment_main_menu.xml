@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fullscreenContentControls"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fondo1"
+    android:layout_marginTop="15dp"
+    android:padding="24dp"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/btnAgregarProducto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agregar producto"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#9C27B0"
+        android:textColor="@android:color/white"
+        android:padding="16dp" />
+
+    <Button
+        android:id="@+id/btnVenderProducto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vender producto"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="#00796B"
+        android:textColor="@android:color/white"
+        android:padding="16dp" />
+
+    <Button
+        android:id="@+id/btnVerInventario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ver inventario"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
+        android:padding="16dp" />
+
+</LinearLayout>

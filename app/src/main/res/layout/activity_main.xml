@@ -1,0 +1,72 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="15dp"
+    android:background="@drawable/fondo1"
+    android:padding="16dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="180dp"
+                android:src="@drawable/usuario"
+                android:layout_marginBottom="20dp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:background="#FFFF"
+                android:layout_marginBottom="30dp" />
+
+            <EditText
+                android:id="@+id/etUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:hint="Usuario"
+                android:padding="12dp"
+                android:inputType="textEmailAddress"
+                android:layout_marginBottom="16dp"
+                android:textColorHint="#66000000"
+                android:textColor="@android:color/black"
+                android:background="@android:drawable/edit_text" />
+
+            <EditText
+                android:id="@+id/etContrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                android:padding="12dp"
+                android:inputType="textPassword"
+                android:layout_marginBottom="16dp"
+                android:textColorHint="#66000000"
+                android:textColor="@android:color/black"
+                android:maxLength="30"
+                android:background="@android:drawable/edit_text" />
+
+
+            <Button
+                android:id="@+id/btnEnviar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Guardar sesion"
+                android:layout_marginTop="12dp"
+                android:textSize="20dp"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#096289"
+                android:paddingEnd="12dp"/>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

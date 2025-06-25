@@ -1,0 +1,123 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fullscreenContentControls"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/fondo1"
+    android:layout_marginTop="15dp"
+    android:padding="24dp"
+    android:gravity="center">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:padding="8dp">
+
+
+        <!-- Botón para escanear código de barras -->
+        <Button
+            android:id="@+id/btnEscanearCodigo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Escanear Código de Barras" />
+
+
+        <EditText
+            android:id="@+id/editTextFolio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingVertical="12dp"
+            android:hint="Folio"
+            android:enabled="false"
+            android:textColorHint="@color/black"
+            android:textColor="@android:color/white"
+            android:background="@color/light_blue_A400"
+            android:layout_marginBottom="12dp"/>
+
+
+
+        <EditText
+            android:id="@+id/editTextNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingVertical="12dp"
+            android:hint="Nombre del Producto"
+            android:textColorHint="@color/black"
+            android:textColor="@android:color/white"
+            android:background="@color/light_blue_A400"
+            android:layout_marginBottom="12dp"/>
+
+
+
+        <EditText
+            android:id="@+id/editTextCantidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingVertical="12dp"
+            android:hint="Cantidad"
+            android:inputType="number"
+            android:textColorHint="@color/black"
+            android:textColor="@android:color/white"
+            android:background="@color/light_blue_A400"
+            android:layout_marginBottom="12dp"/>
+
+
+
+        <EditText
+            android:id="@+id/editTextPrecioCompra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingVertical="12dp"
+            android:hint="Precio de Compra"
+            android:inputType="numberDecimal"
+            android:textColorHint="@color/black"
+            android:textColor="@android:color/white"
+            android:background="@color/light_blue_A400"
+            android:layout_marginBottom="12dp"/>
+
+
+
+        <EditText
+            android:id="@+id/editTextPrecioVenta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:paddingVertical="12dp"
+            android:hint="Precio de Venta"
+            android:inputType="numberDecimal"
+            android:textColorHint="@color/black"
+            android:textColor="@android:color/white"
+            android:background="@color/light_blue_A400"
+            android:layout_marginBottom="16dp"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/btnGuardar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Guardar" />
+
+            <Button
+                android:id="@+id/btnCancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:layout_marginStart="16dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
