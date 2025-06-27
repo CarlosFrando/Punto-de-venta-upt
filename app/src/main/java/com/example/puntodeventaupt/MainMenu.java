@@ -47,11 +47,10 @@ public class MainMenu extends Fragment {
             guardarPreferencia("última_acción", "Vender producto");
             startActivity(new Intent(getActivity(), VenderProductoActivity.class));
         });
-
         binding.btnVerInventario.setOnClickListener(v -> {
             guardarPreferencia("última_acción", "Ver inventario");
-            startActivity(new Intent(getActivity(), VerInventarioActivity.class));
-        });
+            startActivity(new Intent(getActivity(), VerInventarioActivity.class));});
+
     }
 
     private void guardarPreferencia(String clave, String valor) {

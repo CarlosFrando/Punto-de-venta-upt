@@ -66,6 +66,12 @@ public class DBHelper extends SQLiteOpenHelper {
         return db.rawQuery("SELECT * FROM productos WHERE folio = ?", new String[]{folio});
     }
 
+    public Cursor getInventario() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        // Selecciona las columnas que usas en FragmentInventario: nombre, cantidad, precio_venta
+        return db.rawQuery("SELECT nombre, cantidad, precio_venta FROM productos", null);
+    }
+
 
 
 }
